@@ -19,7 +19,6 @@ crash.log
 .env
 .env.local
 .env.sample
-.sequelizerc
 
 # OS and Misc
 .DS_Store
