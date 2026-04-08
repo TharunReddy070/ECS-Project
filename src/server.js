@@ -20,11 +20,20 @@ function handleError(error) {
 }
 
 try {
+  //DEBUG LOGS (VERY IMPORTANT)
+  console.log("==== ENV DEBUG START ====");
+  console.log("DATABASE_URL:", process.env.DATABASE_URL);
+  console.log("POSTGRES_HOST:", process.env.POSTGRES_HOST);
+  console.log("POSTGRES_USER:", process.env.POSTGRES_USER);
+  console.log("POSTGRES_DB:", process.env.POSTGRES_DB);
+  console.log("NODE_ENV:", process.env.NODE_ENV);
+  console.log("==== ENV DEBUG END ====");
+
   await sequelize.authenticate();
+  logger.info('Database authentication successful');
 
   await sequelize.sync();
-
-  logger.info('Connected to database');
+  logger.info('Database sync successful');
 
   const address = await app.listen({ port: env.port });
   logger.info(
@@ -39,6 +48,7 @@ try {
   process.on('uncaughtException', handleError);
   process.on('unhandledRejection', handleError);
 } catch (err) {
+  logger.fatal('Application failed to start');
   logger.fatal(err);
   exit();
 }
