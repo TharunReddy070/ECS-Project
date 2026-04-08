@@ -35,9 +35,13 @@ try {
   await sequelize.sync();
   logger.info('Database sync successful');
 
-  const address = await app.listen({ port: env.port });
+  const address = await app.listen({
+  port: env.port,
+  host: '0.0.0.0',   // 🔥 REQUIRED FOR ECS
+  });
+  
   logger.info(
-    `URL Shortener is running in ${env.node_env} mode → PORT ${address}`
+  `URL Shortener running on port ${env.port} in ${env.node_env} mode`
   );
 
   process.on('SIGTERM', () => {
