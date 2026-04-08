@@ -32,6 +32,15 @@ await fastifyApp.register(fastifyStatic, {
   root: path.join(import.meta.dirname, 'public'),
   prefix: '/static/',
 });
+
+
+// ADD THIS BLOCK
+fastifyApp.get('/health', async (request, reply) => {
+  return { status: 'OK' };
+});
+
+
+// existing routes
 await fastifyApp.register(routes);
 
 export default fastifyApp;
