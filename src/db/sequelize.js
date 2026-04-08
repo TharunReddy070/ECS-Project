@@ -1,9 +1,14 @@
 import { Sequelize } from 'sequelize';
 import logger from '../config/logger.js';
 
-//use DATABASE_URL directly
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // important for RDS
+    },
+  },
   logging: (msg) => logger.debug(msg),
 });
 
