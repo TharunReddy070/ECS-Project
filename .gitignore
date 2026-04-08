@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.npm
+npm-debug.log*
+
+# Build and Testing
+dist/
+coverage/
+*.map
+
+# Terraform (Crucial to avoid the submodule error)
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+.terraform.lock.hcl
+
+# Environment and Secrets
+.env
+.env.local
+.env.sample
+.sequelizerc
+
+# OS and Misc
+.DS_Store
+Thumbs.db
+.albertignore
+

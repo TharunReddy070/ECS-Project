@@ -1,0 +1,37 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "URL Shortener Demo",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "npx nodemon src/server.js",
+    "start": "node src/server.js",
+    "migrate:up": "npx sequelize-cli db:migrate"
+  },
+  "keywords": [
+    "url shortener",
+    "nodejs"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "sequelize-cli": "^6.6.2"
+  },
+  "dependencies": {
+    "@fastify/compress": "^7.0.3",
+    "@fastify/cors": "^9.0.1",
+    "@fastify/helmet": "^11.1.1",
+    "@fastify/static": "^7.0.4",
+    "@fastify/view": "^9.1.0",
+    "dotenv": "^16.4.5",
+    "env-schema": "^6.0.0",
+    "fastify": "^4.28.1",
+    "fastify-graceful-shutdown": "^4.0.1",
+    "nanoid": "^5.0.7",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
+    "pug": "^3.0.3",
+    "sequelize": "^6.37.3"
+  }
+}
