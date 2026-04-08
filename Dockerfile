@@ -1,33 +1,31 @@
-# Stage 1: Build/Dependencies
-FROM node:20-slim AS builder
+# Stage 1: Build
+FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Copy package manifests first for better layer caching
+# Install build tools needed for some node packages
+RUN apk add --no-cache python3 make g++
+
 COPY package*.json ./
-# Install ALL dependencies (including devDependencies)
 RUN npm ci
 
-# Copy the rest of the source code
 COPY . .
 
-# Stage 2: Final Production Image
-FROM node:20-slim
+# Stage 2: Production
+FROM node:20-alpine
 WORKDIR /app
 
-# Set production environment
+# Force update all packages to fix known OS vulnerabilities
+RUN apk update && apk upgrade --no-cache
+
 ENV NODE_ENV=production
 
-# Copy only production dependencies from builder
 COPY --from=builder /app/package*.json ./
 RUN npm ci --only=production && npm cache clean --force
 
-# Copy application source code from builder
 COPY --from=builder /app/src ./src
-COPY --from=builder /app/.sequelizerc ./
+# Only include .sequelizerc if it actually exists in your project
+# COPY --from=builder /app/.sequelizerc ./
 
-# Fastify requires listening on 0.0.0.0 to be reachable inside a container
-# Ensure your app uses: await fastify.listen({ port: 5000, host: '0.0.0.0' })
 EXPOSE 5000
 
-# Start the application
 CMD ["npm", "start"]
