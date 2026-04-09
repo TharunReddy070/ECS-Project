@@ -29,7 +29,7 @@ console.log("POSTGRES_DB:", process.env.POSTGRES_DB);
 console.log("NODE_ENV:", process.env.NODE_ENV);
 console.log("==== ENV DEBUG END ====");
 
-// 🚀 START SERVER FIRST (CRITICAL FIX)
+//  START SERVER FIRST (CRITICAL FIX)
 const address = await app.listen({
 port: env.port,
 host: '0.0.0.0', // REQUIRED for ECS
@@ -39,19 +39,19 @@ logger.info(
 `URL Shortener running on port ${env.port} in ${env.node_env} mode`
 );
 
-// 🚀 CONNECT TO DB (NON-BLOCKING)
+//  CONNECT TO DB (NON-BLOCKING)
 try {
 await sequelize.authenticate();
 logger.info('Database authentication successful');
 
 ```
-// ⚠️ OPTIONAL: Keep this commented for now
+// OPTIONAL: Keep this commented for now
 // await sequelize.sync();
 // logger.info('Database sync successful');
 ```
 
 } catch (dbErr) {
-logger.error('❌ Database connection failed');
+logger.error('Database connection failed');
 logger.error(dbErr);
 }
 
