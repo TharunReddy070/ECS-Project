@@ -8,15 +8,16 @@ block content
           .columns.is-vcentered
             .column
               h1.title.is-1 URL Shortener
+
             .column
-              form.url-form(method="POST" action="/shorten")
+              // ❌ REMOVE method & action
+              form.url-form
                 .field.has-addons
                   .control
                     input.url-input.input.is-medium(
                       type='url'
                       placeholder='Paste in a link to shorten it'
                       required
-                      name='url'
                       autofocus
                     )
                   .control
