@@ -9,11 +9,18 @@ block content
             .column
               h1.title.is-1 URL Shortener
             .column
-              form.url-form
+              form.url-form(method="POST" action="/shorten")
                 .field.has-addons
                   .control
-                    input.url-input.input.is-medium(type='url' placeholder='Paste in a link to shorten it' required='' name='url' autofocus='')
+                    input.url-input.input.is-medium(
+                      type='url'
+                      placeholder='Paste in a link to shorten it'
+                      required
+                      name='url'
+                      autofocus
+                    )
                   .control
                     button.submit-button.is-info.button.is-medium(type='submit') Shorten!
+
     section.result-section.section
       .container(style='max-width: 688px')
