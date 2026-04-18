@@ -1,0 +1,15 @@
+{
+  "production": {
+    "username": "dbadmin",
+    "password": "admin123",
+    "database": "urlshortener",
+    "host": "url-shortener-db.cmjyyawca8tk.us-east-1.rds.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  }
+}
