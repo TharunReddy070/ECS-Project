@@ -26,6 +26,6 @@ COPY --from=builder /app/src ./src
 # Only include .sequelizerc if it actually exists in your project
 # COPY --from=builder /app/.sequelizerc ./
 
-EXPOSE 5000
+EXPOSE 3000
 
 CMD ["npm", "start"]
