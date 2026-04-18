@@ -17,7 +17,9 @@ const fastifyApp = Fastify({
 });
 
 await fastifyApp.register(fastifyCors);
-await fastifyApp.register(fastifyHelmet);
+await fastifyApp.register(fastifyHelmet, {
+  contentSecurityPolicy: false,
+});
 await fastifyApp.register(fastifyCompress);
 await fastifyApp.register(fastifyGracefulShutdown);
 await fastifyApp.register(fastifyView, {
